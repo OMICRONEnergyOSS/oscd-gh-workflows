@@ -1,0 +1,31 @@
+name: Continuous Deployment
+on:
+  workflow_call:
+    secrets:
+      gh_token:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run bundle
+
+      - name: Deploy
+        run: |
+          git remote set-url origin https://git:${{ secrets.gh_token }}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages -d dist -b deploy -u "github-actions <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.gh_token }}
