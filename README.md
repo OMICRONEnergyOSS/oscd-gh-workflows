@@ -30,6 +30,55 @@ jobs:
     uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/unit-tests.yml@main
 ```
 
+# unit-and-vrt-tests.yml
+
+- Creates a Playwright container
+- Checks out the project
+- Installs node modules
+- Runs ESLint (npm run lint)
+- Runs the unit tests (npm run test)
+- Runs the Visual Regression Tests (vrt)
+
+## Usage
+
+```yml
+name: Tests
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    permissions:
+      contents: write
+    uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/unit-and-vrt-tests.yml@main
+```
+
+# update-screenshots.yml
+
+- Creates a Playwright container
+- Checks out the project
+- Installs node modules
+- Runs the Visual Regression Tests (vrt)
+- Commits and Pushes the updated screenshots to the current branch.
+
+## Usage
+
+```yml
+name: Update Screenshots
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-screenshots:
+    permissions:
+      contents: write
+    uses: OMICRONEnergyOSS/oscd-gh-workflows/.github/workflows/update-screenshots.yml@main
+```
+
 # continuous-deployment.yml
 
 Uses gh-pages to build a deployment bundle and push it to the "deploy" branch, assumes repo is configured to deploy the contents of this branch to github pages.
