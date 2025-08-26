@@ -36,8 +36,8 @@ jobs:
 - Checks out the project
 - Installs node modules
 - Runs ESLint (npm run lint)
-- Runs the unit tests (npm run test)
-- Runs the Visual Regression Tests (vrt)
+- Runs the unit tests (npm run test) `npm run test`
+- Runs the Visual Regression Tests (vrt) `npm run test:visual`
 
 ## Usage
 
@@ -60,7 +60,7 @@ jobs:
 - Creates a Playwright container
 - Checks out the project
 - Installs node modules
-- Runs the Visual Regression Tests (vrt)
+- Runs the Visual Regression Tests (vrt) - `npm run test:visual`
 - Commits and Pushes the updated screenshots to the current branch.
 
 ## Usage
